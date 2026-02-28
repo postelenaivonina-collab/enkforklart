@@ -10,7 +10,14 @@ app.use(express.json());
 app.get("/healthcheck", (req, res) => {
   res.status(200).send("ok");
 });
-
+app.get("/debug-key", (req, res) => {
+  const key = process.env.OPENAI_API_KEY || "";
+  res.json({
+    hasKey: key.length > 0,
+    keyPrefix: key.slice(0, 3),   // skal være "sk-"
+    keyLength: key.length
+  });
+});
 // 2) Vis chat-siden
 app.get("/", (req, res) => {
   res.sendFile(path.resolve("index.html"));
