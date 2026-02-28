@@ -30,8 +30,10 @@ try {
 
 // 4) OpenAI klient (må ha secret OPENAI_API_KEY i Replit Secrets)
 const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || "",
 });
+
+console.log("API KEY EXISTS:", !!process.env.OPENAI_API_KEY);
 
 // 5) Chat endpoint
 app.post("/chat", async (req, res) => {
