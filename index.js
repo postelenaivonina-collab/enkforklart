@@ -6,51 +6,53 @@ import path from "path";
 const app = express();
 app.use(express.json());
 
-// last systemprompt fra fil
-const systemPrompt = fs.readFileSync(path.join(process.cwd(), "systemprompt.txt"), "utf8");
-
-// OpenAI klient
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+// 1) Healthcheck FIRST (må aldri feile)
+app.get("/healthcheck", (req, res) => {
+  res.status(200).send("ok");
 });
 
-// vis chat-siden
+// 2) Vis chat-siden
 app.get("/", (req, res) => {
   res.sendFile(path.resolve("index.html"));
 });
 
-// chat endpoint
+// 3) Les systemprompt trygt (fallback hvis fil mangler)
+let systemPrompt = `
+Du er ENKforklart – en profesjonell, vennlig og pedagogisk AI-assistent for ENK i Norge.
+Svar alltid med: Kort svar / Hva påvirkes / Hvorfor / Oppsummering.
+`;
+
+try {
+  systemPrompt = fs.readFileSync(path.join(process.cwd(), "systemprompt.txt"), "utf8");
+} catch (e) {
+  console.log("Fant ikke systemprompt.txt i deploy, bruker fallback.");
+}
+
+// 4) OpenAI klient (må ha secret OPENAI_API_KEY i Replit Secrets)
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+// 5) Chat endpoint
 app.post("/chat", async (req, res) => {
   try {
-    const message = req.body.message;
+    const message = req.body?.message || "";
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        {
-          role: "system",
-          content: systemPrompt
-        },
-        {
-          role: "user",
-          content: message
-        }
-      ]
+        { role: "system", content: systemPrompt },
+        { role: "user", content: message },
+      ],
     });
 
-    res.json({
-      reply: completion.choices[0].message.content
-    });
-
+    res.json({ reply: completion.choices[0].message.content });
   } catch (error) {
-    console.error(error);
-    res.json({
-      reply: "Beklager, det oppstod en feil. Prøv igjen."
-    });
+    console.error("CHAT ERROR:", error);
+    res.json({ reply: "FEIL: " + (error?.message || "ukjent feil") });
   }
 });
 
-// start server
-app.listen(3000, () => {
-  console.log("ENKforklart server startet");
-});
+// 6) Riktig port for deploy
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("ENKforklart server startet på port", PORT));
