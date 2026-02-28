@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 // last systemprompt fra fil
-const systemPrompt = fs.readFileSync("systemprompt.txt", "utf8");
+const systemPrompt = fs.readFileSync(path.join(process.cwd(), "systemprompt.txt"), "utf8");
 
 // OpenAI klient
 const client = new OpenAI({
