@@ -8,8 +8,10 @@ const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+import path from "path";
+
 app.get("/", (req, res) => {
-  res.send("ENKforklart agent kjører!");
+  res.sendFile(path.resolve("index.html"));
 });
 
 app.post("/chat", async (req, res) => {
