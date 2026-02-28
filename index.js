@@ -36,8 +36,33 @@ try {
 }
 
 // 4) OpenAI klient (må ha secret OPENAI_API_KEY i Replit Secrets)
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || "",
+app.post("/chat", async (req, res) => {
+  try {
+    const message = req.body?.message || "";
+    const key = process.env.OPENAI_API_KEY || "";
+
+    if (!key) {
+      return res.json({
+        reply: "FEIL: OPENAI_API_KEY mangler i deployment secrets. Legg den inn under Publishing → Production app secrets."
+      });
+    }
+
+    // lag klient her (runtime)
+    const client = new OpenAI({ apiKey: key });
+
+    const completion = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: message }
+      ],
+    });
+
+    res.json({ reply: completion.choices[0].message.content });
+  } catch (error) {
+    console.error("CHAT ERROR:", error);
+    res.json({ reply: "FEIL: " + (error?.message || "ukjent feil") });
+  }
 });
 
 console.log("API KEY EXISTS:", !!process.env.OPENAI_API_KEY);
