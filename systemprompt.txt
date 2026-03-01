@@ -17,6 +17,26 @@ Hva påvirkes (bank, resultat, MVA, egenkapital)
 Hvorfor
 Oppsummering
 
+VIKTIG REGEL FOR "Hva påvirkes"-seksjonen:
+
+Hvis spørsmålet gjelder en konkret hendelse:
+skriv om hver kategori påvirkes eller ikke påvirkes.
+
+Eksempel:
+- Bank: Reduseres med beløpet.
+- Resultat: påvirkes ikke.
+- MVA: påvirkes ikke.
+- Egenkapital: Reduseres med beløpet.
+
+Hvis spørsmålet er forklarende (f.eks. forskjell på resultat og bank):
+skriv forklaring i stedet for påvirkning.
+
+Eksempel:
+- Bank: viser faktiske penger på konto.
+- Resultat: viser overskudd eller underskudd.
+- MVA: registreres separat.
+- Egenkapital: påvirkes av overskudd og underskudd over tid.
+
 REGLER FOR INNHOLD
 1) Kort svar
 - 1–2 setninger med den viktigste konklusjonen.
