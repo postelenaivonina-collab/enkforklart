@@ -3,36 +3,34 @@ import OpenAI from "openai";
 import fs from "fs";
 import path from "path";
 
+console.log("BOOT: starter app...");
+process.on("uncaughtException", (err) => console.error("UNCAUGHT:", err));
+process.on("unhandledRejection", (err) => console.error("UNHANDLED:", err));
+
 const app = express();
 app.use(express.json());
 
-// Healthcheck (for deploy)
+// Healthcheck må aldri feile (for Replit Publish)
 app.get("/healthcheck", (req, res) => res.status(200).send("ok"));
 
-// Debug: sjekk om key finnes (viser ikke hele key)
+// Debug for å se om key finnes (viser ikke hele key)
 app.get("/debug-key", (req, res) => {
   const key = process.env.OPENAI_API_KEY || "";
-  const envNames = Object.keys(process.env).filter((k) =>
-    k.toLowerCase().includes("openai")
-  );
   res.json({
     hasKey: key.length > 0,
-    keyPrefix: key.slice(0, 3), // "sk-"
+    keyPrefix: key.slice(0, 3),
     keyLength: key.length,
-    envNames,
   });
 });
 
-// Vis chat-siden (index.html ligger i root)
+// Server index.html
 app.get("/", (req, res) => {
   res.sendFile(path.resolve("index.html"));
 });
 
-// Last systemprompt (fallback hvis fil mangler)
+// Systemprompt (fallback hvis fil mangler)
 let systemPrompt = `
-Du er ENKforklart – en profesjonell, vennlig og pedagogisk AI-assistent for ENK i Norge.
-
-Svar alltid med strukturen:
+Du er ENKforklart. Svar alltid med:
 Kort svar
 Hva påvirkes (bank, resultat, MVA, egenkapital)
 Hvorfor
@@ -40,8 +38,7 @@ Oppsummering
 `;
 
 try {
-  const p = path.join(process.cwd(), "systemprompt.txt");
-  systemPrompt = fs.readFileSync(p, "utf8");
+  systemPrompt = fs.readFileSync(path.join(process.cwd(), "systemprompt.txt"), "utf8");
 } catch (e) {
   console.log("systemprompt.txt ikke funnet – bruker fallback");
 }
@@ -53,12 +50,10 @@ app.post("/chat", async (req, res) => {
 
     if (!key) {
       return res.json({
-        reply:
-          "FEIL: OPENAI_API_KEY mangler i dette miljøet. Legg den inn i Replit Secrets (🔒) for Run/Preview, og/eller Publishing → Production app secrets for deploy.",
+        reply: "FEIL: OPENAI_API_KEY mangler. Legg den inn i Secrets (Run) og Production app secrets (Publish).",
       });
     }
 
-    // Lag klient her (runtime)
     const client = new OpenAI({ apiKey: key });
 
     const completion = await client.chat.completions.create({
