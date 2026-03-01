@@ -6,36 +6,46 @@ import path from "path";
 const app = express();
 app.use(express.json());
 
-// 1) Healthcheck FIRST (må aldri feile)
-app.get("/healthcheck", (req, res) => {
-  res.status(200).send("ok");
-});
+// Healthcheck (for deploy)
+app.get("/healthcheck", (req, res) => res.status(200).send("ok"));
+
+// Debug: sjekk om key finnes (viser ikke hele key)
 app.get("/debug-key", (req, res) => {
   const key = process.env.OPENAI_API_KEY || "";
+  const envNames = Object.keys(process.env).filter((k) =>
+    k.toLowerCase().includes("openai")
+  );
   res.json({
     hasKey: key.length > 0,
-    keyPrefix: key.slice(0, 3),   // skal være "sk-"
-    keyLength: key.length
+    keyPrefix: key.slice(0, 3), // "sk-"
+    keyLength: key.length,
+    envNames,
   });
 });
-// 2) Vis chat-siden
+
+// Vis chat-siden (index.html ligger i root)
 app.get("/", (req, res) => {
   res.sendFile(path.resolve("index.html"));
 });
 
-// 3) Les systemprompt trygt (fallback hvis fil mangler)
+// Last systemprompt (fallback hvis fil mangler)
 let systemPrompt = `
 Du er ENKforklart – en profesjonell, vennlig og pedagogisk AI-assistent for ENK i Norge.
-Svar alltid med: Kort svar / Hva påvirkes / Hvorfor / Oppsummering.
+
+Svar alltid med strukturen:
+Kort svar
+Hva påvirkes (bank, resultat, MVA, egenkapital)
+Hvorfor
+Oppsummering
 `;
 
 try {
-  systemPrompt = fs.readFileSync(path.join(process.cwd(), "systemprompt.txt"), "utf8");
+  const p = path.join(process.cwd(), "systemprompt.txt");
+  systemPrompt = fs.readFileSync(p, "utf8");
 } catch (e) {
-  console.log("Fant ikke systemprompt.txt i deploy, bruker fallback.");
+  console.log("systemprompt.txt ikke funnet – bruker fallback");
 }
 
-// 4) OpenAI klient (må ha secret OPENAI_API_KEY i Replit Secrets)
 app.post("/chat", async (req, res) => {
   try {
     const message = req.body?.message || "";
@@ -43,34 +53,13 @@ app.post("/chat", async (req, res) => {
 
     if (!key) {
       return res.json({
-        reply: "FEIL: OPENAI_API_KEY mangler i deployment secrets. Legg den inn under Publishing → Production app secrets."
+        reply:
+          "FEIL: OPENAI_API_KEY mangler i dette miljøet. Legg den inn i Replit Secrets (🔒) for Run/Preview, og/eller Publishing → Production app secrets for deploy.",
       });
     }
 
-    // lag klient her (runtime)
+    // Lag klient her (runtime)
     const client = new OpenAI({ apiKey: key });
-
-    const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: message }
-      ],
-    });
-
-    res.json({ reply: completion.choices[0].message.content });
-  } catch (error) {
-    console.error("CHAT ERROR:", error);
-    res.json({ reply: "FEIL: " + (error?.message || "ukjent feil") });
-  }
-});
-
-console.log("API KEY EXISTS:", !!process.env.OPENAI_API_KEY);
-
-// 5) Chat endpoint
-app.post("/chat", async (req, res) => {
-  try {
-    const message = req.body?.message || "";
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
@@ -87,6 +76,7 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-// 6) Riktig port for deploy
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("ENKforklart server startet på port", PORT));
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("ENKforklart server startet på port", PORT);
+});

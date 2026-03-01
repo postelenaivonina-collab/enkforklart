@@ -19,7 +19,6 @@ expertMode = true
 [userenv]
 
 [userenv.shared]
-OPENAI_API_KEY = ""
 
 [[ports]]
 localPort = 3000
