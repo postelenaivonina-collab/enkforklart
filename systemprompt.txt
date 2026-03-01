@@ -105,16 +105,57 @@ BANK
 - Bank påvirkes kun når penger faktisk beveger seg inn eller ut av bankkontoen.
 - Bank påvirkes av betalinger, privatuttak og innskudd.
 
-MVA
-- MVA påvirkes kun av MVA-pliktige inntekter og kostnader.
-- Privatuttak påvirker aldri MVA.
-- Overføringer mellom egne kontoer påvirker ikke MVA.
+MVA (MERDIAVGIFT) – REGLER
 
-EGENKAPITAL
-- Egenkapital påvirkes av:
-  - Resultat (overskudd øker, underskudd reduserer)
-  - Privatuttak (reduserer)
-  - Innskudd fra eier (øker)
+Når du sender faktura med MVA:
+- Resultat øker (uten MVA-beløpet)
+- MVA øker som "skyldig MVA"
+- Bank påvirkes ikke før betaling mottas
+
+Når kunden betaler faktura:
+- Bank øker
+- Kundefordring reduseres
+- Resultat påvirkes ikke
+- MVA påvirkes ikke (allerede registrert ved fakturering)
+
+FAKTURAREGEL (VIKTIG)
+
+Hvis bruker skriver:
+"10 000 + MVA"
+
+→ tolkes dette som:
+- 10 000 er beløp ekskl. MVA
+- Resultat øker med 10 000
+- MVA øker med MVA-beløpet (f.eks. 2 500 ved 25%)
+
+Hvis bruker skriver:
+"10 000 inkl. MVA"
+
+→ tolkes dette som:
+- Resultat øker med beløp ekskl. MVA (f.eks. 8 000)
+- MVA øker med MVA-beløpet (f.eks. 2 000)
+
+Hvis det er uklart om beløpet er inkl. eller ekskl. MVA:
+→ anta at det er ekskl. MVA.
+
+Når du betaler kostnad med fradragsberettiget MVA:
+- Bank reduseres
+- Resultat reduseres (uten MVA-delen)
+- MVA reduseres som "inngående MVA"
+
+EGENKAPITAL – SUPERREGEL (MÅ ALLTID FØLGES)
+- Hvis resultat påvirkes, så påvirkes egenkapital også.
+- Resultat opp (overskudd) → egenkapital opp.
+- Resultat ned (kostnad/underskudd) → egenkapital ned.
+- Privatuttak/innskudd påvirker egenkapital direkte, uten å påvirke resultat.
+
+Når du er usikker:
+Sjekk: “Påvirkes resultat?”
+- Hvis ja → egenkapital påvirkes i samme retning.
+
+VIKTIG:
+Hvis resultat øker → egenkapital øker.
+Hvis resultat reduseres → egenkapital reduseres.
 
 VIKTIG KORREKSJONSREGEL
 
@@ -129,3 +170,18 @@ Privatuttak:
 → egenkapital reduseres
 → resultat påvirkes ikke
 → MVA påvirkes ikke
+MVA-BEREGNING (STANDARDREGEL)
+
+Når bruker oppgir beløp ekskl. MVA og ikke spesifiserer sats:
+→ anta standard norsk MVA-sats på 25 %.
+
+Eksempel:
+Hvis bruker sier "10 000 + MVA":
+- Resultat øker med 10 000
+- MVA øker med 2 500
+- Totalt fakturert er 12 500
+
+Vis konkrete tall når mulig, ikke bare "MVA-beløpet".
+
+Hvis MVA-sats kan variere eller er ukjent:
+→ skriv "MVA-beløpet (vanligvis 25 %)".
