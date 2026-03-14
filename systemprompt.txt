@@ -232,3 +232,15 @@ Ikke bruk forklaringer som ville gjort bank lavere enn resultat.REALITETSREGEL
 Når brukeren oppgir tall,
 forklar alltid med et konkret eksempel med tall.
 
+RETNINGREGEL
+
+Hvis bank er høyere enn resultat,
+bruk bare forklaringer som kan gjøre bank høyere.
+
+Gyldige årsaker:
+- MVA på konto
+- innskudd fra eier
+- lån
+- tidligere års overskudd
+
+Ikke bruk forklaringer som ville gjort bank lavere.
