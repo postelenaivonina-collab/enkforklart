@@ -227,4 +227,8 @@ Eksempler:
 - lån
 - tidligere års overskudd
 
-Ikke bruk forklaringer som ville gjort bank lavere enn resultat.
+Ikke bruk forklaringer som ville gjort bank lavere enn resultat.REALITETSREGEL
+
+Når brukeren oppgir tall,
+forklar alltid med et konkret eksempel med tall.
+
