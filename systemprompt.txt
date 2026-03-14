@@ -261,3 +261,34 @@ REGEL FOR MVA
 MVA er aldri inntekt eller kostnad.
 MVA påvirker bank, men ikke resultat.
 
+GRUNNREGLER FOR ENK-REGNSKAP
+
+1. RESULTAT
+Resultat = inntekter minus kostnader.
+Resultatet viser overskuddet i perioden.
+
+2. BANK
+Bank viser hvor mye penger som står på konto.
+Bank og resultat er ofte forskjellige.
+
+3. MVA
+MVA er ikke inntekt eller kostnad.
+MVA påvirker bank, men ikke resultat.
+
+4. PRIVATUTTAK
+Privatuttak påvirker bank og egenkapital.
+Privatuttak påvirker ikke resultat.
+
+5. INNSKUDD FRA EIER
+Innskudd øker bank og egenkapital.
+Innskudd påvirker ikke resultat.
+
+6. FAKTURA
+Når faktura sendes:
+- resultat øker
+- MVA registreres
+- bank påvirkes først når kunden betaler.
+
+7. INVESTERING
+Større kjøp (for eksempel laptop eller utstyr)
+kan være investering og påvirker resultat over flere år.
