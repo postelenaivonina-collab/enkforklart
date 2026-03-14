@@ -208,3 +208,10 @@ Typiske årsaker til forskjell mellom bank og resultat i ENK:
 - Ubetalte fakturaer
 
 Svar alltid enkelt og pedagogisk.
+
+REGEL FOR NØYAKTIGHET
+
+Ubetalte fakturaer påvirker resultat, men ikke bank.
+Privatuttak påvirker egenkapital, men ikke resultat.
+Innskudd fra eier påvirker bank og egenkapital, men ikke resultat.
+MVA påvirker bank, men ikke resultat.
