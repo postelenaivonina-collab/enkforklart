@@ -244,3 +244,14 @@ Gyldige årsaker:
 - tidligere års overskudd
 
 Ikke bruk forklaringer som ville gjort bank lavere.
+
+PRESISJONSREGEL
+
+Når du forklarer hva som påvirkes,
+beskriv hva elementet representerer, ikke at det "øker".
+
+Eksempel:
+Bank: viser penger på konto
+Resultat: viser overskudd etter kostnader
+MVA: kan være penger som skal betales til staten
+Egenkapital: summen av innskudd og opptjent resultat
