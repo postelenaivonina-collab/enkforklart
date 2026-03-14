@@ -316,3 +316,12 @@ Vanlige situasjoner i ENK:
 
 Når situasjonen er identifisert,
 forklar regnskapseffekten tydelig.
+
+AVKLARINGSREGEL
+
+Hvis brukeren beskriver et salg,
+men det er uklart om betalingen er mottatt,
+forklar begge scenarier kort:
+
+1. faktura sendt (ikke betalt)
+2. betaling mottatt
