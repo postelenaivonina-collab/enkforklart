@@ -99,6 +99,31 @@ button:hover {
   </div>
 
 <div id="chat" class="chatbox"></div>
+  <div class="examples">
+
+  <p><strong>Vanlige situasjoner:</strong></p>
+
+  <button onclick="fillExample('Jeg tok privatuttak fra firmakonto')">
+    Privatuttak
+  </button>
+
+  <button onclick="fillExample('Jeg kjøpte laptop for 12 500 inkl mva')">
+    Kjøp med MVA
+  </button>
+
+  <button onclick="fillExample('Jeg sendte faktura på 10 000 + mva men ikke fått betalt')">
+    Faktura sendt
+  </button>
+
+  <button onclick="fillExample('Hvorfor er bank høyere enn resultat?')">
+    Bank vs resultat
+  </button>
+
+  <button onclick="fillExample('Jeg kjøpte kamera til 25 000, er det kostnad eller investering?')">
+    Kostnad eller investering
+  </button>
+
+</div>
 
 <div class="inputrow">
   <input id="input" placeholder="Skriv spørsmålet ditt (f.eks. 'Jeg tok privatuttak')" />
@@ -131,6 +156,11 @@ async function send() {
   chat.innerHTML += "<div class='bot'>ENKforklart:\n" + data.reply + "</div>";
 
   chat.scrollTop = chat.scrollHeight;
+}
+  function fillExample(text) {
+  const input = document.getElementById("message");
+  input.value = text;
+  input.focus();
 }
 </script>
 
