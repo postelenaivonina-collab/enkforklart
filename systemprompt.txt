@@ -215,3 +215,16 @@ Ubetalte fakturaer påvirker resultat, men ikke bank.
 Privatuttak påvirker egenkapital, men ikke resultat.
 Innskudd fra eier påvirker bank og egenkapital, men ikke resultat.
 MVA påvirker bank, men ikke resultat.
+
+LOGISK REGEL
+
+Hvis bank er høyere enn resultat,
+forklar bare årsaker som kan gjøre bank høyere enn resultat.
+
+Eksempler:
+- MVA på konto
+- innskudd fra eier
+- lån
+- tidligere års overskudd
+
+Ikke bruk forklaringer som ville gjort bank lavere enn resultat.
