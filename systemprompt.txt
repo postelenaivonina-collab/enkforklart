@@ -255,3 +255,9 @@ Bank: viser penger på konto
 Resultat: viser overskudd etter kostnader
 MVA: kan være penger som skal betales til staten
 Egenkapital: summen av innskudd og opptjent resultat
+
+REGEL FOR MVA
+
+MVA er aldri inntekt eller kostnad.
+MVA påvirker bank, men ikke resultat.
+
