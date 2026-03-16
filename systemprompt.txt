@@ -387,3 +387,20 @@ Forklar at forskjellen ofte skyldes:
 - innskudd fra eier
 - lån
 - tidligere overskudd
+
+RESONNERINGSREGEL
+
+Før du svarer, gjør følgende internt:
+
+1. Identifiser hvilken regnskapssituasjon spørsmålet gjelder
+   (privatuttak, kjøp, salg, faktura, bank vs resultat, investering).
+
+2. Bestem hvilken regnskapsregel som gjelder.
+
+3. Beregn effekten på:
+   - bank
+   - resultat
+   - MVA
+   - egenkapital
+
+4. Skriv deretter svaret til brukeren i den vanlige strukturen.
