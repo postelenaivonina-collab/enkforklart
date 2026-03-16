@@ -339,3 +339,51 @@ Bank: -12 500
 Resultat: -10 000
 MVA: -2 500
 Egenkapital: -10 000
+
+SCENARIO-MOTOR
+
+Før du svarer, identifiser hvilken regnskapssituasjon brukeren beskriver.
+
+Vanlige scenarioer i ENK:
+
+1. Privatuttak
+Bruker tar penger fra firma til privat bruk.
+
+Effekt
+Bank: reduseres
+Resultat: påvirkes ikke
+MVA: påvirkes ikke
+Egenkapital: reduseres
+
+2. Kjøp med MVA
+Virksomheten kjøper varer eller tjenester.
+
+Effekt
+Bank: reduseres med totalbeløpet
+Resultat: reduseres med beløpet ekskl. MVA
+MVA: registreres som inngående MVA
+Egenkapital: reduseres indirekte via resultat
+
+3. Salg med MVA
+Virksomheten selger varer eller tjenester.
+
+Effekt
+Bank: øker hvis kunden betaler
+Resultat: øker med beløpet ekskl. MVA
+MVA: registreres som utgående MVA
+Egenkapital: øker via resultat
+
+4. Faktura sendt men ikke betalt
+
+Effekt
+Bank: påvirkes ikke ennå
+Resultat: øker med beløpet ekskl. MVA
+MVA: registreres som skyldig MVA
+
+5. Bank vs resultat
+
+Forklar at forskjellen ofte skyldes:
+- MVA
+- innskudd fra eier
+- lån
+- tidligere overskudd
