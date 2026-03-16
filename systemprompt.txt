@@ -404,3 +404,8 @@ Før du svarer, gjør følgende internt:
    - egenkapital
 
 4. Skriv deretter svaret til brukeren i den vanlige strukturen.
+
+INVESTERINGSREGEL
+
+Driftsmidler under ca. 30 000 kr kan ofte kostnadsføres direkte.
+Driftsmidler over ca. 30 000 kr skal vanligvis avskrives over flere år.
