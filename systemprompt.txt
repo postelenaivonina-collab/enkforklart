@@ -325,3 +325,17 @@ forklar begge scenarier kort:
 
 1. faktura sendt (ikke betalt)
 2. betaling mottatt
+
+VISUELL REGEL
+
+Når du forklarer hva som påvirkes (bank, resultat, MVA, egenkapital),
+vis alltid effekten i en kort liste eller blokk med tall.
+
+Eksempel:
+
+Effekt
+
+Bank: -12 500
+Resultat: -10 000
+MVA: -2 500
+Egenkapital: -10 000
