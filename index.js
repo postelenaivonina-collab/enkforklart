@@ -35,6 +35,7 @@ process.on("unhandledRejection", (err) => console.error("UNHANDLED:", err));
 
 const app = express();
 app.use(express.json());
+app.use(express.static(process.cwd()));
 
 // Healthcheck må aldri feile (for Replit Publish)
 app.get("/healthcheck", (req, res) => res.status(200).send("ok"));
