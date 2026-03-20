@@ -138,3 +138,25 @@ app.get("/logs", (req, res) => {
     res.send("Ingen logs enda");
   }
 });
+app.get("/questions", (req, res) => {
+  try {
+    const file = fs.readFileSync("logs/chatlog.jsonl", "utf8");
+
+    const questions = file
+      .split("\n")
+      .filter(Boolean)
+      .map(line => {
+        try {
+          return JSON.parse(line);
+        } catch {
+          return null;
+        }
+      })
+      .filter(item => item && item.type === "chat_request")
+      .map(item => `${item.time} - ${item.message}`);
+
+    res.type("text").send(questions.join("\n\n") || "Ingen spørsmål enda");
+  } catch (e) {
+    res.send("Ingen spørsmål enda");
+  }
+});
