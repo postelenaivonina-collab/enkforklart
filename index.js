@@ -130,3 +130,11 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log("ENKforklart server startet på port", PORT);
 });
+app.get("/logs", (req, res) => {
+  try {
+    const file = fs.readFileSync("logs/chatlog.jsonl", "utf8");
+    res.type("text").send(file);
+  } catch (e) {
+    res.send("Ingen logs enda");
+  }
+});
