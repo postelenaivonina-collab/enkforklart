@@ -83,6 +83,7 @@ app.post("/chat", async (req, res) => {
       message,
       userAgent: req.headers["user-agent"] || "",
     });
+    console.log("SPØRSMÅL:", message);
 
     const key = process.env.OPENAI_API_KEY || "";
     if (!key) {
